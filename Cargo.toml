@@ -1,0 +1,24 @@
+[package]
+name = "nucleo-f446re"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.7.5"
+embedded-hal = "0.2.7"
+switch-hal = "0.4.0"
+
+[dependencies.stm32f4xx-hal]
+version = "0.13.2"
+features = ["stm32f446"]
+
+[dev-dependencies]
+cortex-m-rt = "0.7.1"
+panic-probe = { version = "0.3.0", features = ["print-rtt"] }
+
+[profile.release]
+codegen-units = 1 # better optimizations
+debug = true # symbols are nice and they don't increase the size on Flash
+lto = true # better optimizations
