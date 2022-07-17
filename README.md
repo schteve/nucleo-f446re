@@ -4,7 +4,7 @@ A Board Support Package (BSP) for the [Nucleo F446RE](https://www.st.com/en/eval
 
 This crate intends to be a beginner-friendly way to use this Nucleo board. It handles linker configuration, board initialization, and provides access to implementations of the board's features without needing to directly use a HAL. It may also be helpful as an example for learning embedded Rust with the STM32F446. For advanced applications you likely want to use the [stm32f4xx-hal](https://github.com/stm32-rs/stm32f4xx-hal) crate directly.
 
-Note: this crate doesn't select the build target for your application. You can do this by copying the `.cargo/config.toml` in this library, or by setting the target on each build e.g. `cargo run --target thumbv7em-none-eabi`.
+Note: this crate doesn't select the build target for your application. You can do this by copying the `.cargo/config.toml` to your application, or by setting the target on each build e.g. `cargo run --target thumbv7em-none-eabi`.
 
 # Board features
 
