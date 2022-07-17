@@ -2,7 +2,13 @@
 name = "nucleo-f446re"
 version = "0.1.0"
 edition = "2021"
+authors = ["Steve Heindel <stevenheindel@gmail.com>"]
 license = "MIT or Apache-2.0"
+description = "Board Support Package crate for the Nucleo-F446RE board"
+repository = "https://github.com/schteve/nucleo-f446re"
+readme = "README.md"
+keywords = ["arm", "bsp", "cortex-m", "nucleo", "stm32"]
+categories = ["embedded", "hardware-support", "no-std"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
