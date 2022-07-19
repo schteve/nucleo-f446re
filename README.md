@@ -1,3 +1,6 @@
+[![Crates.io](https://img.shields.io/crates/v/nucleo-f446re)](https://crates.io/crates/nucleo-f446re)
+[![docs.rs](https://img.shields.io/docsrs/nucleo-f446re)](https://docs.rs/nucleo-f446re/)
+
 # Nucleo-F446RE
 
 A Board Support Package (BSP) for the [Nucleo F446RE](https://www.st.com/en/evaluation-tools/nucleo-f446re.html) development board. This board has a few basic features as well as breakout headers for daughter boards such as Arduino shields. It is a starting point to evaluate or develop basic applications for the [STM32F446 product line](https://www.st.com/en/microcontrollers-microprocessors/stm32f446.html).
