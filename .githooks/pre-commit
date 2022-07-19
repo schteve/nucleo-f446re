@@ -2,6 +2,6 @@
 if [ "$BRANCH_NAME" != '(no branch)' ]
 then
     cargo fmt -- --check || exit 1
-    # cargo test --release || exit 1
+    cargo build --examples || exit 1
     cargo clippy -- -Dwarnings || exit 1
 fi
