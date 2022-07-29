@@ -45,7 +45,14 @@ impl<LED: LedBuilder> Nucleo<LED> {
             cortex_m::peripheral::Peripherals::take(),
         ) {
             let rcc = dp.RCC.constrain();
-            let clocks = rcc.cfgr.freeze();
+            // Let's run as fast as we can, why not?
+            let clocks = rcc
+                .cfgr
+                .use_hse(8.MHz()) // Per UM1724 the ST-Link MCO is used as HSE on OSC_IN, fixed at 8 MHz
+                .bypass_hse_oscillator() // Bypass since it's not coming from a crystal
+                .sysclk(180.MHz()) // 180 MHz is max SYSCLK
+                .hclk(180.MHz()) // 180 MHz is max HCLK
+                .freeze();
 
             let gpioa = dp.GPIOA.split();
             let gpioc = dp.GPIOC.split();
