@@ -6,6 +6,7 @@ use stm32f4xx_hal::{
     timer::PwmChannel,
 };
 use switch_hal::{ActiveHigh, IntoSwitch, OutputSwitch, Switch, ToggleableOutputSwitch};
+use unwrap_infallible::UnwrapInfallible;
 
 /// A trait that builds some type of LED from the given PA5 pin and TIM2 timer.
 pub trait LedBuilder {
@@ -28,17 +29,17 @@ impl LedDigital {
 
     /// Turn the LED on.
     pub fn on(&mut self) {
-        self.0.on().unwrap()
+        self.0.on().unwrap_infallible()
     }
 
     /// Turn the LED off.
     pub fn off(&mut self) {
-        self.0.off().unwrap()
+        self.0.off().unwrap_infallible()
     }
 
     /// Toggle the LED state.
     pub fn toggle(&mut self) {
-        self.0.toggle().unwrap()
+        self.0.toggle().unwrap_infallible()
     }
 }
 
