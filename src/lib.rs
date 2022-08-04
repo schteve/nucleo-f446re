@@ -59,7 +59,8 @@ impl<LED: LedBuilder> Nucleo<LED> {
 
             let user_led = LED::build(gpioa.pa5, dp.TIM2, &clocks);
             let user_button = Button::new(gpioc.pc13);
-            let vcom = SerialPort::new(gpioa.pa2, gpioa.pa3, dp.USART2, &clocks).ok()?;
+            let vcom =
+                SerialPort::new(gpioa.pa2, gpioa.pa3, dp.USART2, &clocks, 9600.bps()).ok()?;
             let delay = cp.SYST.delay(&clocks);
 
             Some(Self {
