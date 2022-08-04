@@ -6,7 +6,10 @@ use stm32f4xx_hal::{
     pac::USART2,
     prelude::*,
     rcc::Clocks,
-    serial::{config::Config, Rx, Tx},
+    serial::{
+        config::{Config, InvalidConfig},
+        Rx, Tx,
+    },
 };
 
 /// A serial port implementation that uses the on-board serial port via the ST-Link debugger.
@@ -24,19 +27,22 @@ impl SerialPort {
     /// be directly used to send and receive data.
     ///
     /// Since each pin can only be moved once, effectively this is a singleton.
-    pub fn new(pin_tx: PA2<Input>, pin_rx: PA3<Input>, usart: USART2, clocks: &Clocks) -> Self {
+    pub fn new(
+        pin_tx: PA2<Input>,
+        pin_rx: PA3<Input>,
+        usart: USART2,
+        clocks: &Clocks,
+    ) -> Result<Self, InvalidConfig> {
         let pin_tx_af = pin_tx.into_alternate();
         let pin_rx_af = pin_rx.into_alternate();
 
-        let serial = usart
-            .serial(
-                (pin_tx_af, pin_rx_af),
-                Config::default().baudrate(9600.bps()),
-                clocks,
-            )
-            .unwrap();
-        let (tx, rx) = serial.split();
+        let serial = usart.serial(
+            (pin_tx_af, pin_rx_af),
+            Config::default().baudrate(9600.bps()),
+            clocks,
+        )?;
 
-        Self { tx, rx }
+        let (tx, rx) = serial.split();
+        Ok(Self { tx, rx })
     }
 }
