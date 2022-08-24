@@ -22,6 +22,8 @@ jobs:
         path: |
           ~/.cargo/registry
           ~/.cargo/git
+          ~/.rustup
+          target
         key: ${{ runner.os }}-${{ runner.arch }}
     - name: Check
       run: cargo fmt -- --check
