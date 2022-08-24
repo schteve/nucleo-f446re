@@ -22,14 +22,7 @@ jobs:
         path: |
           ~/.cargo/registry
           ~/.cargo/git
-          ~/.rustup
-          target
         key: ${{ runner.os }}-${{ runner.arch }}
-    - name: Install Rust
-      uses: dtolnay/rust-toolchain@stable
-      with:
-        targets: thumbv7em-none-eabi
-        components: rustfmt, clippy
     - name: Check
       run: cargo fmt -- --check
     - name: Build
