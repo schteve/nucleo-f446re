@@ -9,6 +9,7 @@ impl Button {
     /// Initialize the button.
     ///
     /// Since each pin can only be moved once, effectively this is a singleton.
+    #[must_use]
     pub fn new(pin: PC13<Input>) -> Self {
         Self(pin.into_active_low_switch())
     }
@@ -18,6 +19,7 @@ impl Button {
     /// This is an instantaneous reading of the button with no software debouncing.
     /// However, the Nucleo board seems to be debounced in hardware (presumably via
     /// C14 / C15 / R29 / R30 but the user manual does not specify).
+    #[must_use]
     pub fn is_pressed(&self) -> bool {
         self.0.is_active().unwrap_infallible()
     }

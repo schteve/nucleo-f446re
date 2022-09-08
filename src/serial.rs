@@ -29,6 +29,8 @@ impl SerialPort {
     ///
     /// Since each pin can only be moved once, effectively this is a singleton.
     ///
+    /// # Errors
+    ///
     /// This can fail if the requested baud rate is invalid or if the clock tree
     /// configuration is incompatible.
     pub fn new(

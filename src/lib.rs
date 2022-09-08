@@ -19,7 +19,7 @@ use stm32f4xx_hal::{prelude::*, timer::SysDelay};
 
 /// The batteries-included way to work with the Nucleo board.
 ///
-/// This struct is marked as non_exhaustive to make it unconstructable, thereby forcing the user to go through init().
+/// This struct is marked as `non_exhaustive` to make it unconstructable, thereby forcing the user to go through init().
 #[non_exhaustive]
 pub struct Nucleo<LED = LedDigital> {
     /// The user LED.
@@ -39,6 +39,7 @@ impl<LED: LedBuilder> Nucleo<LED> {
     /// internally and can't be used elsewhere. After the first call, always returns None.
     ///
     /// The LED generic parameter allows the user to specify what type of LED should control the LED hardware.
+    #[must_use]
     pub fn init() -> Option<Self> {
         if let (Some(dp), Some(cp)) = (
             stm32f4xx_hal::pac::Peripherals::take(),

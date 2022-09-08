@@ -21,6 +21,7 @@ impl LedDigital {
     /// Initialize the digital LED.
     ///
     /// Since each pin can only be moved once, effectively this is a singleton.
+    #[must_use]
     pub fn new(pin: PA5<Input>) -> Self {
         let mut me = Self(pin.into_push_pull_output().into_active_high_switch());
         me.off();
@@ -29,22 +30,23 @@ impl LedDigital {
 
     /// Turn the LED on.
     pub fn on(&mut self) {
-        self.0.on().unwrap_infallible()
+        self.0.on().unwrap_infallible();
     }
 
     /// Turn the LED off.
     pub fn off(&mut self) {
-        self.0.off().unwrap_infallible()
+        self.0.off().unwrap_infallible();
     }
 
     /// Toggle the LED state.
     pub fn toggle(&mut self) {
-        self.0.toggle().unwrap_infallible()
+        self.0.toggle().unwrap_infallible();
     }
 }
 
 impl LedBuilder for LedDigital {
     /// Build a digital LED. Timer and clocks are not needed for digital output so are ignored.
+    #[must_use]
     fn build(pin: PA5<Input>, _tim: TIM2, _clocks: &Clocks) -> Self {
         Self::new(pin)
     }
@@ -57,8 +59,9 @@ impl LedAnalog {
     /// Initialize the analog LED.
     ///
     /// PWM frequency is set to 20 kHz. In the future if it needs to be user-defined,
-    /// this could be done through a generic parameter on LedAnalog.
+    /// this could be done through a generic parameter on `LedAnalog`.
     /// Since each pin can only be moved once, effectively this is a singleton.
+    #[must_use]
     pub fn new(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self {
         let mut pwm_ch1 = tim.pwm_hz(pin.into_alternate(), 20.kHz(), clocks).split();
         pwm_ch1.set_duty(0);
@@ -76,13 +79,14 @@ impl LedAnalog {
         assert!(duty <= 100);
 
         let max_duty = self.0.get_max_duty();
-        let val = (max_duty / 100) * duty as u16;
+        let val = (max_duty / 100) * u16::from(duty);
         self.0.set_duty(val);
     }
 }
 
 impl LedBuilder for LedAnalog {
     /// Build an analog LED.
+    #[must_use]
     fn build(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self {
         Self::new(pin, tim, clocks)
     }
