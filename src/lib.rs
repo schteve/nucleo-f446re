@@ -55,13 +55,13 @@ impl<LED: LedBuilder> Nucleo<LED> {
                 .hclk(180.MHz()) // 180 MHz is max HCLK
                 .freeze();
 
-            let gpioa = dp.GPIOA.split();
-            let gpioc = dp.GPIOC.split();
+            let gpio_a = dp.GPIOA.split();
+            let gpio_c = dp.GPIOC.split();
 
-            let user_led = LED::build(gpioa.pa5, dp.TIM2, &clocks);
-            let user_button = Button::new(gpioc.pc13);
+            let user_led = LED::build(gpio_a.pa5, dp.TIM2, &clocks);
+            let user_button = Button::new(gpio_c.pc13);
             let vcom =
-                SerialPort::new(gpioa.pa2, gpioa.pa3, dp.USART2, &clocks, 9600.bps()).ok()?;
+                SerialPort::new(gpio_a.pa2, gpio_a.pa3, dp.USART2, &clocks, 9600.bps()).ok()?;
             let delay = cp.SYST.delay(&clocks);
 
             Some(Self {

@@ -9,12 +9,14 @@ use switch_hal::{ActiveHigh, IntoSwitch, OutputSwitch, Switch, ToggleableOutputS
 use unwrap_infallible::UnwrapInfallible;
 
 /// A trait that builds some type of LED from the given PA5 pin and TIM2 timer.
+#[allow(clippy::module_name_repetitions)]
 pub trait LedBuilder {
     /// Build the timer.
     fn build(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self;
 }
 
 /// A digital LED controller (on / off).
+#[allow(clippy::module_name_repetitions)]
 pub struct LedDigital(Switch<PA5<Output>, ActiveHigh>);
 
 impl LedDigital {
@@ -53,6 +55,7 @@ impl LedBuilder for LedDigital {
 }
 
 /// An analog LED controller (brightness from 0 - 100%).
+#[allow(clippy::module_name_repetitions)]
 pub struct LedAnalog(PwmChannel<TIM2, 0>);
 
 impl LedAnalog {
@@ -76,7 +79,8 @@ impl LedAnalog {
     /// 1% on the duty cycle are meaningful, and 100% is "close enough" to the max
     /// duty value (if not exactly).
     pub fn set_duty(&mut self, duty: u8) {
-        assert!(duty <= 100);
+        debug_assert!(duty <= 100);
+        let duty = if duty > 100 { 100 } else { duty };
 
         let max_duty = self.0.get_max_duty();
         let val = (max_duty / 100) * u16::from(duty);

@@ -16,6 +16,7 @@ use stm32f4xx_hal::{
 /// A serial port implementation that uses the on-board serial port via the ST-Link debugger.
 ///
 /// Currently hard coded to send bytes but could be updated to support u16 for 9-bit mode.
+#[allow(clippy::module_name_repetitions)]
 pub struct SerialPort {
     /// The transmit line of the port. Can send bytes or strings.
     pub tx: Tx<USART2, u8>,
@@ -33,6 +34,7 @@ impl SerialPort {
     ///
     /// This can fail if the requested baud rate is invalid or if the clock tree
     /// configuration is incompatible.
+    #[allow(clippy::similar_names)]
     pub fn new(
         pin_tx: PA2<Input>,
         pin_rx: PA3<Input>,
