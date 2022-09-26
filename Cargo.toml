@@ -16,11 +16,8 @@ categories = ["embedded", "hardware-support", "no-std"]
 cortex-m = "0.7.5"
 embedded-hal = "0.2.7"
 switch-hal = "0.4.0"
+stm32f4xx-hal = { version = "0.13.2", features = ["stm32f446"]}
 unwrap-infallible = "0.1.5"
-
-[dependencies.stm32f4xx-hal]
-version = "0.13.2"
-features = ["stm32f446"]
 
 [dev-dependencies]
 cortex-m-rt = "0.7.1"
