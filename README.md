@@ -25,7 +25,7 @@ There are two main ways to make use of this BSP:
 Many examples are provided to illustrate both ways of using the BSP, which can be found in the `examples` directory. Use a USB cable to connect the Nucleo board's debugger to the host computer, and then run an example with cargo:
 > `cargo run --example blinky`
 
-Here, `cargo run` implicitly makes use of [probe-run](https://github.com/knurling-rs/probe-run) to flash, execute, and handle panic and backtrace info. If you prefer GDB and OpenOCD, you can change the behavior of `cargo run` by editing `.cargo/config.toml` (basic scripts for GDB and OpenOCD are provided).
+Here, `cargo run` implicitly makes use of [probe-rs](https://github.com/probe-rs/probe-rs) to flash, execute, and handle panic and backtrace info. If you prefer GDB and OpenOCD, you can change the behavior of `cargo run` by editing `.cargo/config.toml` (basic scripts for GDB and OpenOCD are provided).
 
 # Reference material
 
