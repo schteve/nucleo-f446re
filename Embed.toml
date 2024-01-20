@@ -1,0 +1,7 @@
+[default.general]
+chip = "STM32F446RETx"
+
+# By default use denable rtt if we use `cargo embed`
+[default.rtt]
+enabled = true
+
