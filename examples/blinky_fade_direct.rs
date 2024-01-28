@@ -3,7 +3,7 @@
 #![no_main]
 
 use cortex_m_rt::entry;
-use embedded_hal::blocking::delay::DelayMs;
+use embedded_hal::delay::DelayNs;
 use nucleo_f446re::led::LedAnalog;
 use panic_probe as _;
 use stm32f4xx_hal::prelude::*;
