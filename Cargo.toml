@@ -14,14 +14,14 @@ categories = ["embedded", "hardware-support", "no-std"]
 
 [dependencies]
 cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
-embedded-hal = "0.2.7"
+embedded-hal = "1.0.0"
+stm32f4xx-hal = { version = "0.20.0", features = ["stm32f446"]}
 switch-hal = "0.4.0"
-stm32f4xx-hal = { version = "0.13.2", features = ["stm32f446"]}
 unwrap-infallible = "0.1.5"
 
 [dev-dependencies]
-cortex-m-rt = "0.7.1"
-panic-probe = { version = "0.3.0", features = ["print-rtt"] }
+cortex-m-rt = "0.7.3"
+panic-probe = { version = "0.3.1", features = ["print-rtt"] }
 
 [profile.release]
 codegen-units = 1 # better optimizations

@@ -3,7 +3,7 @@ use stm32f4xx_hal::{
     pac::TIM2,
     prelude::*,
     rcc::Clocks,
-    timer::PwmChannel,
+    timer::{Channel1, PwmChannel},
 };
 use switch_hal::{ActiveHigh, IntoSwitch, OutputSwitch, Switch, ToggleableOutputSwitch};
 use unwrap_infallible::UnwrapInfallible;
@@ -66,7 +66,8 @@ impl LedAnalog {
     /// Since each pin can only be moved once, effectively this is a singleton.
     #[must_use]
     pub fn new(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self {
-        let mut pwm_ch1 = tim.pwm_hz(pin.into_alternate(), 20.kHz(), clocks).split();
+        let channel = Channel1::new(pin.into_alternate());
+        let mut pwm_ch1 = tim.pwm_hz(channel, 20.kHz(), clocks).split();
         pwm_ch1.set_duty(0);
         pwm_ch1.enable();
         Self(pwm_ch1)
