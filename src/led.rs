@@ -9,14 +9,14 @@ use switch_hal::{ActiveHigh, IntoSwitch, OutputSwitch, Switch, ToggleableOutputS
 use unwrap_infallible::UnwrapInfallible;
 
 /// A trait that builds some type of LED from the given PA5 pin and TIM2 timer.
-#[allow(clippy::module_name_repetitions)]
+#[expect(clippy::module_name_repetitions)]
 pub trait LedBuilder {
     /// Build the timer.
     fn build(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self;
 }
 
 /// A digital LED controller (on / off).
-#[allow(clippy::module_name_repetitions)]
+#[expect(clippy::module_name_repetitions)]
 pub struct LedDigital(Switch<PA5<Output>, ActiveHigh>);
 
 impl LedDigital {
@@ -55,7 +55,7 @@ impl LedBuilder for LedDigital {
 }
 
 /// An analog LED controller (brightness from 0 - 100%).
-#[allow(clippy::module_name_repetitions)]
+#[expect(clippy::module_name_repetitions)]
 pub struct LedAnalog(PwmChannel<TIM2, 0>);
 
 impl LedAnalog {
