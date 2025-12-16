@@ -12,6 +12,7 @@ use unwrap_infallible::UnwrapInfallible;
 #[expect(clippy::module_name_repetitions)]
 pub trait LedBuilder {
     /// Build the timer.
+    /// #[must_use]
     fn build(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self;
 }
 
@@ -48,7 +49,6 @@ impl LedDigital {
 
 impl LedBuilder for LedDigital {
     /// Build a digital LED. Timer and clocks are not needed for digital output so are ignored.
-    #[must_use]
     fn build(pin: PA5<Input>, _tim: TIM2, _clocks: &Clocks) -> Self {
         Self::new(pin)
     }
@@ -91,7 +91,6 @@ impl LedAnalog {
 
 impl LedBuilder for LedAnalog {
     /// Build an analog LED.
-    #[must_use]
     fn build(pin: PA5<Input>, tim: TIM2, clocks: &Clocks) -> Self {
         Self::new(pin, tim, clocks)
     }
