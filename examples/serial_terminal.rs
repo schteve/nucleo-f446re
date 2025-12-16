@@ -4,7 +4,7 @@
 
 use core::{fmt::Write, str};
 use cortex_m_rt::entry;
-use nucleo_f446re::{led::LedDigital, serial::SerialPort, Nucleo};
+use nucleo_f446re::{Nucleo, led::LedDigital, serial::SerialPort};
 use panic_probe as _;
 use stm32f4xx_hal::{block, prelude::*};
 

@@ -1,14 +1,14 @@
 use stm32f4xx_hal::{
     gpio::{
-        gpioa::{PA2, PA3},
         Input,
+        gpioa::{PA2, PA3},
     },
     pac::USART2,
     prelude::*,
     rcc::Clocks,
     serial::{
-        config::{Config, InvalidConfig},
         Rx, Tx,
+        config::{Config, InvalidConfig},
     },
     time::Bps,
 };

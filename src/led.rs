@@ -1,5 +1,5 @@
 use stm32f4xx_hal::{
-    gpio::{gpioa::PA5, Input, Output},
+    gpio::{Input, Output, gpioa::PA5},
     pac::TIM2,
     prelude::*,
     rcc::Clocks,

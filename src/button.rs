@@ -1,4 +1,4 @@
-use stm32f4xx_hal::gpio::{gpioc::PC13, Input};
+use stm32f4xx_hal::gpio::{Input, gpioc::PC13};
 use switch_hal::{ActiveLow, InputSwitch, IntoSwitch, Switch};
 use unwrap_infallible::UnwrapInfallible;
 

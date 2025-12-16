@@ -4,7 +4,7 @@
 
 use cortex_m_rt::entry;
 use embedded_hal::delay::DelayNs;
-use nucleo_f446re::{led::LedAnalog, Nucleo};
+use nucleo_f446re::{Nucleo, led::LedAnalog};
 use panic_probe as _;
 
 #[entry]

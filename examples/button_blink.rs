@@ -3,7 +3,7 @@
 #![no_main]
 
 use cortex_m_rt::entry;
-use nucleo_f446re::{led::LedDigital, Nucleo};
+use nucleo_f446re::{Nucleo, led::LedDigital};
 use panic_probe as _;
 
 #[entry]
